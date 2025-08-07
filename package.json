@@ -1,0 +1,50 @@
+{
+  "name": "aws-devops-consultant",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev:vite": "vite",
+    "dev:choose": "node scripts/dev.js",
+    "build": "next build",
+    "build:vite": "vite build",
+    "start": "next start",
+    "preview": "vite preview",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "postbuild": "next-sitemap",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "performance": "node scripts/performance.js",
+    "optimize": "node scripts/optimize.js",
+    "health": "node scripts/check-health.js"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "framer-motion": "^10.16.16",
+    "next-seo": "^6.4.0",
+    "next-sitemap": "^4.2.3",
+    "lucide-react": "^0.294.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0"
+  }
+} 

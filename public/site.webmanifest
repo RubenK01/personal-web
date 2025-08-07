@@ -1,0 +1,26 @@
+{
+  "name": "AWS Consultant - Consultor AWS Freelance",
+  "short_name": "AWS Consultant",
+  "description": "Consultor freelance especializado en AWS y DevOps. Migración cloud, CI/CD, optimización de costes y seguridad.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0D20",
+  "theme_color": "#0B0D20",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+} 
