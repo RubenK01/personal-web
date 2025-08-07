@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { LeadForm } from '@/types';
+import { techIconMap, TechIconType } from '@/components/icons/TechIcons';
+import { techMapping } from '@/data/techMapping';
 
 export default function Hero() {
   const [formData, setFormData] = useState<LeadForm>({
@@ -186,21 +188,33 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="grid grid-cols-4 gap-4"
           >
-            {Array.from({ length: 16 }).map((_, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
-                className="tech-card group"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-dark-800 to-dark-700 rounded-lg flex items-center justify-center text-gray-400 group-hover:text-primary-400 transition-colors duration-200">
-                  <span className="text-lg font-semibold">
-                    {['AWS', 'K8s', 'TF', 'GH', 'DC', 'JF', 'PM', 'GF', 'DD', 'NR', 'VT', 'SQ', 'SK', 'AZ', 'GC', 'DO'][index]}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+            {(['AWS', 'K8s', 'TF', 'GH', 'DC', 'JF', 'PM', 'GF', 'DD', 'NR', 'VT', 'SQ', 'SK', 'AZ', 'GC', 'DO'] as TechIconType[]).map((techKey, index) => {
+              const IconComponent = techIconMap[techKey];
+              const techInfo = techMapping[techKey];
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
+                  className="tech-card group relative"
+                  title={techInfo.fullName}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-dark-800 to-dark-700 rounded-lg flex items-center justify-center group-hover:from-dark-700 group-hover:to-dark-600 transition-all duration-200">
+                    <IconComponent 
+                      size={32} 
+                      className="opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200" 
+                    />
+                  </div>
+                  
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-dark-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10 pointer-events-none">
+                    {techInfo.fullName}
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-dark-900"></div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </div>

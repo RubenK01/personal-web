@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { technologies } from '@/data/technologies';
+import { techIconMap, TechIconType } from '@/components/icons/TechIcons';
+import { techMapping, techKeys } from '@/data/techMapping';
 
 export default function Technologies() {
   const ref = useRef(null);
@@ -71,7 +73,8 @@ export default function Technologies() {
           className="space-y-12"
         >
           {categories.map((category, categoryIndex) => {
-            const categoryTechs = technologies.filter(tech => tech.category === ['cloud', 'devops', 'monitoring', 'security'][categoryIndex]);
+            const categoryName = ['cloud', 'devops', 'monitoring', 'security'][categoryIndex];
+            const categoryTechs = techKeys.filter(key => techMapping[key].category === categoryName);
             
             return (
               <motion.div
@@ -88,28 +91,41 @@ export default function Technologies() {
                   variants={containerVariants}
                   className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
                 >
-                  {categoryTechs.map((tech, techIndex) => (
-                    <motion.div
-                      key={tech.id}
-                      variants={itemVariants}
-                      whileHover={{ 
-                        scale: 1.05,
-                        borderColor: '#ef4444'
-                      }}
-                      className="tech-card group"
-                    >
-                      <div className="w-16 h-16 bg-gradient-to-br from-dark-800 to-dark-700 rounded-lg flex items-center justify-center group-hover:from-dark-700 group-hover:to-dark-600 transition-all duration-200">
-                        <div className="text-gray-400 group-hover:text-white transition-colors duration-200 font-semibold text-lg">
-                          {tech.name}
+                  {categoryTechs.map((techKey, techIndex) => {
+                    const IconComponent = techIconMap[techKey as TechIconType];
+                    const techInfo = techMapping[techKey];
+                    
+                    return (
+                      <motion.div
+                        key={techKey}
+                        variants={itemVariants}
+                        whileHover={{ 
+                          scale: 1.05,
+                          borderColor: '#ef4444'
+                        }}
+                        className="tech-card group relative"
+                        title={techInfo.fullName}
+                      >
+                        <div className="w-16 h-16 bg-gradient-to-br from-dark-800 to-dark-700 rounded-lg flex items-center justify-center group-hover:from-dark-700 group-hover:to-dark-600 transition-all duration-200">
+                          <IconComponent 
+                            size={40} 
+                            className="opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200" 
+                          />
                         </div>
-                      </div>
-                      <div className="mt-3 text-center">
-                        <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-200">
-                          {tech.name}
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
+                        <div className="mt-3 text-center">
+                          <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-200">
+                            {techInfo.name}
+                          </span>
+                        </div>
+                        
+                        {/* Tooltip */}
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-dark-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10 pointer-events-none">
+                          {techInfo.fullName}
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-dark-900"></div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </motion.div>
               </motion.div>
             );
