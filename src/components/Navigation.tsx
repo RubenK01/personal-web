@@ -9,8 +9,8 @@ const navigationItems: NavItem[] = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Tecnologías', href: '#tecnologias' },
   { label: 'Sobre Mí', href: '#sobre-mi' },
-  { label: 'Testimonios', href: '#testimonios' },
-  { label: 'Contacto', href: '#contacto' },
+  // abel: 'Testimonios', href: '#testimonios' },
+  // { label: 'Contacto', href: '#contacto' },
 ];
 
 export default function Navigation() {
@@ -50,43 +50,42 @@ export default function Navigation() {
             transition={{ duration: 0.5 }}
             className="flex items-center space-x-2"
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
+            <span className="inline-flex items-center space-x-2">
+                <span className="md:hidden">
+                  <span className="font-extrabold text-2xl tracking-tight text-white">Rubén C.</span>
+                  <span className="ml-2 hidden xs:inline text-gray-400 text-sm">· DevOps & AWS Engineer</span>
+                </span>
+                <span className="hidden md:inline font-extrabold text-2xl tracking-tight text-white">Rubén Casado</span>
+                <span className="hidden md:inline text-gray-400 text-base">· DevOps & AWS Engineer</span>
+              </span>
+          </motion.div>
+
+          {/* Desktop Navigation + CTA (right aligned) */}
+          <div className="hidden md:flex items-center space-x-6">
+            <div className="flex items-center space-x-6">
+              {navigationItems.map((item, index) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-gray-300 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1 group"
+                >
+                  <span>{item.label}</span>
+                  <ChevronDown className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                </motion.a>
+              ))}
             </div>
-            <span className="text-white font-bold text-xl">AWS Consultant</span>
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navigationItems.map((item, index) => (
-              <motion.a
-                key={item.label}
-                href={item.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-gray-300 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1 group"
-              >
-                <span>{item.label}</span>
-                <ChevronDown className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="hidden md:block"
-          >
-            <a
-              href="#contacto"
-              className="btn-primary"
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="pl-2"
             >
-              Contactar
-            </a>
-          </motion.div>
+              <a href="#contacto" className="btn-primary">Contactar</a>
+            </motion.div>
+          </div>
 
           {/* Mobile Menu Button */}
           <motion.button

@@ -89,7 +89,7 @@ export default function Technologies() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
           >
             <span className="text-white">Tecnologías</span>
-            <span className="text-gradient"> que domino</span>
+            <span className="text-gradient"> destacadas</span>
           </motion.h2>
           <motion.p
             variants={itemVariants}

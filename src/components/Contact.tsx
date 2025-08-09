@@ -215,7 +215,8 @@ export default function Contact() {
 
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="space-y-8">
-            <div>
+            {/* Contact Info Wrapper Card for alignment */}
+            <div className="bg-dark-800 border border-dark-700 rounded-xl p-8">
               <h3 className="text-2xl font-semibold text-white mb-6">
                 Información de contacto
               </h3>
@@ -230,7 +231,7 @@ export default function Contact() {
                       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                       transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                       whileHover={{ x: 5 }}
-                      className="flex items-center space-x-4 p-4 bg-dark-800 rounded-lg border border-dark-700 hover:border-primary-500 transition-all duration-200 group"
+                      className="flex items-center space-x-4 p-4 bg-dark-900 rounded-lg border border-dark-700 hover:border-primary-500 transition-all duration-200 group"
                     >
                       <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                         <IconComponent className="w-6 h-6 text-white" />
