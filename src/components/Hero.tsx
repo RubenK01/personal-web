@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { LeadForm } from '@/types';
-import { techIconMap, TechIconType } from '@/components/icons/TechIcons';
-import { techMapping } from '@/data/techMapping';
+import IconTile from '@/components/icons/IconTile';
+// Removed OfficialIcons usage; using static SVGs from public/icons-pack
 
 export default function Hero() {
   const [formData, setFormData] = useState<LeadForm>({
@@ -41,7 +41,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-dark-950 relative overflow-hidden">
+    <section className="section-padding min-h-screen flex items-center justify-center bg-dark-950 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-950 to-dark-950">
         <div className="absolute inset-0 opacity-20" style={{
@@ -49,20 +49,20 @@ export default function Hero() {
         }}></div>
       </div>
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 pt-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1.0, ease: 'easeOut' }}
             className="space-y-8"
           >
             <div className="space-y-6">
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 1.0, delay: 0.2, ease: 'easeOut' }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
               >
                 <span className="text-white">Arquitectura cloud</span>
@@ -75,7 +75,7 @@ export default function Hero() {
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 1.0, delay: 0.4, ease: 'easeOut' }}
                 className="text-xl text-gray-300 leading-relaxed max-w-2xl"
               >
                 Te ayudo a migrar, automatizar y optimizar tu infraestructura en AWS. 
@@ -87,7 +87,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 1.0, delay: 0.6, ease: 'easeOut' }}
               className="space-y-3"
             >
               <div className="flex items-center space-x-3">
@@ -108,7 +108,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 1.0, delay: 0.8, ease: 'easeOut' }}
               className="bg-dark-900/50 backdrop-blur-sm border border-dark-800 rounded-xl p-6"
             >
               {!isSubmitted ? (
@@ -150,6 +150,7 @@ export default function Hero() {
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
+                    transition={{ type: 'tween', ease: 'easeOut' }}
                     className="w-full btn-primary flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
@@ -185,36 +186,37 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-4 gap-4"
+            transition={{ duration: 1.0, delay: 0.4, ease: 'easeOut' }}
+            className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-4 gap-3 sm:gap-4 mt-6 md:mt-0 justify-items-center mb-8"
           >
-            {(['AWS', 'K8s', 'TF', 'GH', 'DC', 'JF', 'PM', 'GF', 'DD', 'NR', 'VT', 'SQ', 'SK', 'AZ', 'GC', 'DO'] as TechIconType[]).map((techKey, index) => {
-              const IconComponent = techIconMap[techKey];
-              const techInfo = techMapping[techKey];
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
-                  className="tech-card group relative"
-                  title={techInfo.fullName}
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-dark-800 to-dark-700 rounded-lg flex items-center justify-center group-hover:from-dark-700 group-hover:to-dark-600 transition-all duration-200">
-                    <IconComponent 
-                      size={32} 
-                      className="opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200" 
-                    />
-                  </div>
-                  
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-dark-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10 pointer-events-none">
-                    {techInfo.fullName}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-dark-900"></div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {([
+              // Top row (más relevantes)
+              { name: 'AWS', file: 'aws.svg' },
+              { name: 'Docker', file: 'docker-mark-blue.svg' },
+              { name: 'Apache Airflow', file: 'airflow-icon-logo.svg' },
+              { name: 'Kubernetes', file: 'kubernetes-icon-color.svg' },
+              // Segunda fila
+              { name: 'AWS Lambda', file: 'Arch_AWS-Lambda_48.svg' },
+              { name: 'AWS EC2', file: 'Arch_Amazon-EC2_48.svg' },
+              { name: 'AWS S3', file: 'Arch_Amazon-S3-on-Outposts_48.svg' },
+              { name: 'Terraform', file: 'terraform-original-logo.svg' },
+              // Tercera fila
+              { name: 'GitHub', file: 'github.svg' },
+              { name: 'GitLab', file: 'gitlab.svg' },
+              { name: 'Jenkins', file: 'jenkins.svg' },
+              { name: 'Prometheus', file: 'prometheus-icon-color.svg' },
+            ]).map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 + index * 0.05 }}
+              >
+                <IconTile label={item.name}>
+                  <img src={`/icons-pack/${item.file}`} alt={item.name} />
+                </IconTile>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>

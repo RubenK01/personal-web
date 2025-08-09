@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { technologies } from '@/data/technologies';
-import { techIconMap, TechIconType } from '@/components/icons/TechIcons';
-import { techMapping, techKeys } from '@/data/techMapping';
+import IconTile from '@/components/icons/IconTile';
 
 export default function Technologies() {
   const ref = useRef(null);
@@ -16,18 +15,21 @@ export default function Technologies() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05
+        staggerChildren: 0.07,
+        ease: 'easeOut'
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9, y: 8 },
     visible: {
       opacity: 1,
       scale: 1,
+      y: 0,
       transition: {
-        duration: 0.4
+        duration: 0.5,
+        ease: 'easeOut'
       }
     }
   };
@@ -39,14 +41,47 @@ export default function Technologies() {
     { name: 'Security', color: 'from-red-500 to-red-600' }
   ];
 
+  // Mapeo directo a archivos SVG presentes en public/icons-pack
+  const iconFileMap: Record<string, string> = {
+    // Cloud & AWS
+    'AWS': 'Arch_AWS-Backup_48.svg',
+    'EC2': 'Arch_Amazon-EC2_48.svg',
+    'S3': 'Arch_Amazon-S3-on-Outposts_48.svg',
+    'Lambda': 'Arch_AWS-Lambda_48.svg',
+    'RDS': 'Arch_Amazon-RDS_48.svg',
+    'EKS': 'Arch_Amazon-Elastic-Kubernetes-Service_48.svg',
+    'ECS': 'Arch_Amazon-Elastic-Container-Service_48.svg',
+    'EFS': 'Arch_Amazon-EFS_48.svg',
+    'Aurora': 'Arch_Amazon-Aurora_48.svg',
+    'DocumentDB': 'Arch_Amazon-DocumentDB_48.svg',
+
+    // DevOps
+    'Docker': 'docker-mark-blue.svg',
+    'Kubernetes': 'kubernetes-icon-color.svg',
+    'Terraform': 'terraform-original-logo.svg',
+    'Ansible': 'ansible.svg',
+    'Jenkins': 'jenkins.svg',
+    'GitHub': 'github.svg',
+    'GitLab': 'gitlab.svg',
+
+    // Monitoring
+    'Prometheus': 'prometheus-icon-color.svg',
+    // Nota: Faltan Grafana/Datadog/New Relic en el pack actual
+
+    // Otros ejemplos disponibles en el pack
+    'Azure DevOps': 'azuredevops-original-logo.svg',
+    'Apache Airflow': 'airflow-icon-logo.svg',
+  };
+
   return (
     <section id="tecnologias" className="section-padding bg-dark-950">
-      <div className="container-custom">
+      <div className="container-custom px-3 sm:px-4">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center mb-16"
         >
           <motion.h2
@@ -70,12 +105,14 @@ export default function Technologies() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="space-y-12"
         >
           {categories.map((category, categoryIndex) => {
-            const categoryName = ['cloud', 'devops', 'monitoring', 'security'][categoryIndex];
-            const categoryTechs = techKeys.filter(key => techMapping[key].category === categoryName);
-            
+            const slug = ['cloud', 'devops', 'monitoring', 'security'][categoryIndex];
+            const categoryTechs = technologies.filter(tech => tech.category === slug);
+            const visibleTechs = categoryTechs.filter(tech => Boolean(iconFileMap[tech.name]));
+
             return (
               <motion.div
                 key={category.name}
@@ -89,43 +126,21 @@ export default function Technologies() {
                 
                 <motion.div
                   variants={containerVariants}
-                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+                  className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4"
                 >
-                  {categoryTechs.map((techKey, techIndex) => {
-                    const IconComponent = techIconMap[techKey as TechIconType];
-                    const techInfo = techMapping[techKey];
-                    
-                    return (
-                      <motion.div
-                        key={techKey}
-                        variants={itemVariants}
-                        whileHover={{ 
-                          scale: 1.05,
-                          borderColor: '#ef4444'
-                        }}
-                        className="tech-card group relative"
-                        title={techInfo.fullName}
-                      >
-                        <div className="w-16 h-16 bg-gradient-to-br from-dark-800 to-dark-700 rounded-lg flex items-center justify-center group-hover:from-dark-700 group-hover:to-dark-600 transition-all duration-200">
-                          <IconComponent 
-                            size={40} 
-                            className="opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200" 
-                          />
-                        </div>
-                        <div className="mt-3 text-center">
-                          <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-200">
-                            {techInfo.name}
-                          </span>
-                        </div>
-                        
-                        {/* Tooltip */}
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-dark-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10 pointer-events-none">
-                          {techInfo.fullName}
-                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-dark-900"></div>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
+                  {visibleTechs.map((tech) => (
+                    <motion.div
+                      key={tech.id}
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.04 }}
+                      className="group relative"
+                      title={tech.name}
+                    >
+                      <IconTile label={tech.name}>
+                        <img src={`/icons-pack/${iconFileMap[tech.name]}`} alt={tech.name} />
+                      </IconTile>
+                    </motion.div>
+                  ))}
                 </motion.div>
               </motion.div>
             );
@@ -136,7 +151,7 @@ export default function Technologies() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
           className="mt-20 grid md:grid-cols-3 gap-8"
         >
           <div className="text-center">

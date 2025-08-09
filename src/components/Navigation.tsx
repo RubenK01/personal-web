@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { NavItem } from '@/types';
@@ -15,8 +15,29 @@ const navigationItems: NavItem[] = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      if (panelRef.current && panelRef.current.contains(target)) return;
+      if (buttonRef.current && buttonRef.current.contains(target)) return;
+      setIsOpen(false);
+    };
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-950/95 backdrop-blur-sm border-b border-dark-800">
@@ -73,6 +94,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             onClick={toggleMenu}
+            ref={buttonRef}
             className="md:hidden p-2 text-gray-300 hover:text-white transition-colors duration-200"
             aria-label="Toggle menu"
           >
@@ -83,43 +105,57 @@ export default function Navigation() {
         {/* Mobile Menu */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden border-t border-dark-800 bg-dark-950/95 backdrop-blur-sm"
-            >
-              <div className="px-4 py-6 space-y-4">
-                {navigationItems.map((item, index) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
+            <>
+              {/* Overlay para cerrar al pulsar fuera */}
+              <motion.button
+                aria-label="Cerrar menú"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={() => setIsOpen(false)}
+                className="fixed inset-0 bg-black/40 backdrop-blur-[1px] md:hidden z-40"
+              />
+
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden border-t border-dark-800 bg-dark-950/95 backdrop-blur-sm z-50 relative"
+                ref={panelRef}
+              >
+                <div className="px-4 py-6 space-y-4">
+                  {navigationItems.map((item, index) => (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      onClick={() => setIsOpen(false)}
+                      className="block text-gray-300 hover:text-white transition-colors duration-200 font-medium py-2"
+                    >
+                      {item.label}
+                    </motion.a>
+                  ))}
+                  <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-gray-300 hover:text-white transition-colors duration-200 font-medium py-2"
+                    transition={{ duration: 0.3, delay: 0.5 }}
+                    className="pt-4"
                   >
-                    {item.label}
-                  </motion.a>
-                ))}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: 0.5 }}
-                  className="pt-4"
-                >
-                  <a
-                    href="#contacto"
-                    onClick={() => setIsOpen(false)}
-                    className="btn-primary w-full text-center"
-                  >
-                    Contactar
-                  </a>
-                </motion.div>
-              </div>
-            </motion.div>
+                    <a
+                      href="#contacto"
+                      onClick={() => setIsOpen(false)}
+                      className="btn-primary w-full text-center"
+                    >
+                      Contactar
+                    </a>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

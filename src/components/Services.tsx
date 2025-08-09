@@ -4,22 +4,23 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { services } from '@/data/services';
-import { 
-  Cloud, 
-  ArrowRight, 
-  GitBranch, 
-  TrendingDown, 
-  Shield, 
-  Activity 
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import {
+  CloudArchitectureIcon,
+  MigrationIcon,
+  CiCdDevOpsIcon,
+  CostOptimizationIcon,
+  SecurityCloudIcon,
+  MonitoringIcon,
+} from '@/components/icons/ServiceIcons';
 
-const iconMap = {
-  Cloud,
-  ArrowRight,
-  GitBranch,
-  TrendingDown,
-  Shield,
-  Activity
+const iconByServiceId: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
+  'cloud-architecture': CloudArchitectureIcon,
+  'migration': MigrationIcon,
+  'cicd': CiCdDevOpsIcon,
+  'cost-optimization': CostOptimizationIcon,
+  'security': SecurityCloudIcon,
+  'monitoring': MonitoringIcon,
 };
 
 export default function Services() {
@@ -80,21 +81,22 @@ export default function Services() {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {services.map((service, index) => {
-            const IconComponent = iconMap[service.icon as keyof typeof iconMap];
+            const IconComponent = iconByServiceId[service.id] ?? CloudArchitectureIcon;
             
             return (
               <motion.div
                 key={service.id}
                 variants={itemVariants}
-                whileHover={{ y: -8 }}
+                transition={{ y: { type: 'tween', ease: 'easeOut', duration: 0.3 } }}
+                whileHover={{ y: -8, transition: { type: 'tween', ease: 'easeOut', duration: 0.3 } }}
                 className="card group cursor-pointer"
               >
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
+                <div className="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 ease-out md:self-start self-center">
                     <IconComponent className="w-6 h-6 text-white" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors duration-200">
+                  <div className="flex-1 md:ml-2">
+                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors duration-300 ease-out">
                       {service.title}
                     </h3>
                     <p className="text-gray-300 mb-4 leading-relaxed">
@@ -114,10 +116,10 @@ export default function Services() {
                 <motion.div
                   initial={{ opacity: 0, x: -10 }}
                   whileHover={{ opacity: 1, x: 0 }}
-                  className="mt-6 flex items-center text-primary-400 font-medium group-hover:text-primary-300 transition-colors duration-200"
+                  className="mt-6 flex items-center text-primary-400 font-medium group-hover:text-primary-300 transition-colors duration-300 ease-out"
                 >
                   <span className="text-sm">Saber más</span>
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 ease-out" />
                 </motion.div>
               </motion.div>
             );

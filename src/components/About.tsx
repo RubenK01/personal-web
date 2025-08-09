@@ -53,7 +53,7 @@ export default function About() {
 
   return (
     <section id="sobre-mi" className="section-padding bg-dark-900">
-      <div className="container-custom">
+      <div className="container-custom px-3 sm:px-4">
         <motion.div
           ref={ref}
           initial="hidden"

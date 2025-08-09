@@ -31,7 +31,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-dark-950 border-t border-dark-800">
-      <div className="container-custom">
+      <div className="container-custom px-3 sm:px-4">
         <div className="py-12">
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand */}
