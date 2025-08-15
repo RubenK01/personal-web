@@ -66,7 +66,7 @@ scripts/
 
 ### Prerrequisitos
 
-- Node.js 18+ 
+- Node.js 20+ 
 - npm o yarn
 
 ### Instalación
