@@ -6,7 +6,7 @@ const nextConfig = {
     unoptimized: true
   },
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     turbo: {
       rules: {
         '*.svg': {
