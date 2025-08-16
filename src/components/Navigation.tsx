@@ -52,11 +52,11 @@ export default function Navigation() {
           >
             <span className="inline-flex items-center space-x-2">
                 <span className="md:hidden">
-                  <span className="font-extrabold text-2xl tracking-tight text-white">Rubén C.</span>
-                  <span className="ml-2 hidden xs:inline text-gray-400 text-sm">· DevOps & AWS Engineer</span>
+                  <span className="font-extrabold text-2xl tracking-tight text-white">Rubén C</span>
+                  <span className="ml-2 xs:inline text-gray-400 text-sm">  DevSecOps & Cloud Engineer</span>
                 </span>
                 <span className="hidden md:inline font-extrabold text-2xl tracking-tight text-white">Rubén Casado</span>
-                <span className="hidden md:inline text-gray-400 text-base">· DevOps & AWS Engineer</span>
+                <span className="hidden md:inline text-gray-400 text-base">· DevSecOps & Cloud Engineer</span>
               </span>
           </motion.div>
 
