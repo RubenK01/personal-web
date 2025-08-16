@@ -59,5 +59,7 @@ export default defineConfig({
   },
   define: {
     __DEV__: JSON.stringify(process.env.NODE_ENV === 'development'),
+    'process.env.NEXT_PUBLIC_CONTACT_EMAIL': JSON.stringify(process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'rcasadodev@gmail.com'),
+    'process.env.NEXT_PUBLIC_CONTACT_PHONE': JSON.stringify(process.env.NEXT_PUBLIC_CONTACT_PHONE || '+34664656038'),
   },
 }) 

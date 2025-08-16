@@ -3,7 +3,7 @@ import React from "react";
 
 type Props = {
   label: string;
-  children: React.ReactNode; // <svg> oficial importado aquí
+  children: React.ReactNode;
 };
 
 export default function IconTile({ label, children }: Props) {

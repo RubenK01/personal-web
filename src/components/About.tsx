@@ -130,16 +130,12 @@ export default function About() {
           <motion.div variants={itemVariants} className="space-y-8">
             {/* Profile Image Placeholder */}
             <div className="relative">
-              <div className="w-80 h-80 mx-auto bg-gradient-to-br from-dark-800 to-dark-700 rounded-2xl flex items-center justify-center border border-dark-600">
-                <div className="text-center space-y-4">
-                  <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto">
-                    <span className="text-white font-bold text-2xl">A</span>
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-white">Tu Nombre</h3>
-                    <p className="text-gray-400">Consultor AWS & DevOps</p>
-                  </div>
-                </div>
+              <div className="w-80 h-80 mx-auto rounded-2xl border border-dark-600 overflow-hidden">
+                <img 
+                  src="/foto.jpg"
+                  alt="Profile photo"
+                  className="w-full h-full object-cover" 
+                />
               </div>
               
               {/* Floating Elements */}

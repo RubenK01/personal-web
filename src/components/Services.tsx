@@ -5,22 +5,14 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { services } from '@/data/services';
 import { ArrowRight } from 'lucide-react';
-import {
-  CloudArchitectureIcon,
-  MigrationIcon,
-  CiCdDevOpsIcon,
-  CostOptimizationIcon,
-  SecurityCloudIcon,
-  MonitoringIcon,
-} from '@/components/icons/ServiceIcons';
 
-const iconByServiceId: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
-  'cloud-architecture': CloudArchitectureIcon,
-  'migration': MigrationIcon,
-  'cicd': CiCdDevOpsIcon,
-  'cost-optimization': CostOptimizationIcon,
-  'security': SecurityCloudIcon,
-  'monitoring': MonitoringIcon,
+const pngByServiceId: Record<string, string> = {
+  'cloud-architecture': 'arquitectura-cloud',
+  'migration': 'migracion-cloud',
+  'cicd': 'cicd-devops',
+  'cost-optimization': 'optimizacion-costes',
+  'security': 'seguridad-cloud',
+  'monitoring': 'monitoring-observability',
 };
 
 export default function Services() {
@@ -81,7 +73,6 @@ export default function Services() {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {services.map((service, index) => {
-            const IconComponent = iconByServiceId[service.id] ?? CloudArchitectureIcon;
             
             return (
               <motion.div
@@ -91,11 +82,15 @@ export default function Services() {
                 whileHover={{ y: -8, transition: { type: 'tween', ease: 'easeOut', duration: 0.3 } }}
                 className="card group cursor-pointer"
               >
-                <div className="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 ease-out md:self-start self-center">
-                    <IconComponent className="w-6 h-6 text-white" />
+                <div className="flex flex-col items-start space-y-4">
+                  <div className="w-24 h-24 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 group-hover:shadow-lg transition-all duration-300 ease-in-out self-center mb-4">
+                    <img 
+                      src={`/service-icons/${pngByServiceId[service.id]}.png`}
+                      alt={service.title}
+                      className="w-full h-full drop-shadow-md object-contain" 
+                    />
                   </div>
-                  <div className="flex-1 md:ml-2">
+                  <div className="flex-1">
                     <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors duration-300 ease-out">
                       {service.title}
                     </h3>

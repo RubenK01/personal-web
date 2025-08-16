@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, Send, CheckCircle } from 'lucide-react';
 import { ContactForm } from '@/types';
+import { WhatsappIcon } from '@/components/icons/WhatsappIcon';
 
 export default function Contact() {
   const ref = useRef(null);
@@ -69,19 +70,19 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'Email',
-      value: 'tu@email.com',
-      href: 'mailto:tu@email.com'
+      value: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'tu@email.com',
+      href: `mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'tu@email.com'}`
     },
     {
-      icon: Phone,
-      title: 'Teléfono',
-      value: '+34 600 000 000',
-      href: 'tel:+34600000000'
+      icon: WhatsappIcon,
+      title: 'WhatsApp',
+      value: process.env.NEXT_PUBLIC_CONTACT_PHONE || '+34 600 000 000',
+      href: `https://wa.me/${(process.env.NEXT_PUBLIC_CONTACT_PHONE || '+34600000000').replace(/[^0-9+]/g, '')}`
     },
     {
       icon: MapPin,
       title: 'Ubicación',
-      value: 'España (Remoto)',
+      value: 'Madrid, España',
       href: '#'
     }
   ];
