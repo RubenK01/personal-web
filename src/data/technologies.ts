@@ -6,126 +6,126 @@ export const technologies: Technology[] = [
     id: 'aws',
     name: 'AWS',
     icon: 'aws',
-    category: 'cloud'
+    category: 'cloud',
   },
   {
     id: 'ec2',
     name: 'EC2',
     icon: 'ec2',
-    category: 'cloud'
+    category: 'cloud',
   },
   {
     id: 's3',
     name: 'S3',
     icon: 's3',
-    category: 'cloud'
+    category: 'cloud',
   },
   {
     id: 'lambda',
     name: 'Lambda',
     icon: 'lambda',
-    category: 'cloud'
+    category: 'cloud',
   },
   {
     id: 'rds',
     name: 'RDS',
     icon: 'rds',
-    category: 'cloud'
+    category: 'cloud',
   },
   {
     id: 'cloudfront',
     name: 'CloudFront',
     icon: 'cloudfront',
-    category: 'cloud'
+    category: 'cloud',
   },
-  
+
   // DevOps Tools
   {
     id: 'docker',
     name: 'Docker',
     icon: 'docker',
-    category: 'devops'
+    category: 'devops',
   },
   {
     id: 'kubernetes',
     name: 'Kubernetes',
     icon: 'kubernetes',
-    category: 'devops'
+    category: 'devops',
   },
   {
     id: 'terraform',
     name: 'Terraform',
     icon: 'terraform',
-    category: 'devops'
+    category: 'devops',
   },
   {
     id: 'ansible',
     name: 'Ansible',
     icon: 'ansible',
-    category: 'devops'
+    category: 'devops',
   },
   {
     id: 'jenkins',
     name: 'Jenkins',
     icon: 'jenkins',
-    category: 'devops'
+    category: 'devops',
   },
   {
     id: 'github',
     name: 'GitHub',
     icon: 'github',
-    category: 'devops'
+    category: 'devops',
   },
   {
     id: 'gitlab',
     name: 'GitLab',
     icon: 'gitlab',
-    category: 'devops'
+    category: 'devops',
   },
-  
+
   // Monitoring & Observability
   {
     id: 'prometheus',
     name: 'Prometheus',
     icon: 'prometheus',
-    category: 'monitoring'
+    category: 'monitoring',
   },
   {
     id: 'grafana',
     name: 'Grafana',
     icon: 'grafana',
-    category: 'monitoring'
+    category: 'monitoring',
   },
   {
     id: 'datadog',
     name: 'Datadog',
     icon: 'datadog',
-    category: 'monitoring'
+    category: 'monitoring',
   },
   {
     id: 'newrelic',
     name: 'New Relic',
     icon: 'newrelic',
-    category: 'monitoring'
+    category: 'monitoring',
   },
-  
+
   // Security
   {
     id: 'vault',
     name: 'Vault',
     icon: 'vault',
-    category: 'security'
+    category: 'security',
   },
   {
     id: 'sonarqube',
     name: 'SonarQube',
     icon: 'sonarqube',
-    category: 'security'
+    category: 'security',
   },
   {
     id: 'snyk',
     name: 'Snyk',
     icon: 'snyk',
-    category: 'security'
-  }
+    category: 'security',
+  },
 ]; 
