@@ -41,9 +41,9 @@ export default function Hero() {
   };
 
   return (
-    <section className="section-padding min-h-screen flex items-center justify-center bg-dark-950 relative overflow-hidden">
+    <section className="section-padding min-h-screen flex items-center justify-center bg-slate-950 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark-900 via-dark-950 to-dark-950">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
@@ -63,23 +63,20 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.0, delay: 0.2, ease: 'easeOut' }}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+                className="text-4xl md:text-5xl font-extrabold leading-tight"
               >
-                <span className="text-white">Arquitectura cloud</span>
+                <span className="text-white">Escala tu negocio en la nube</span>
                 <br />
-                <span className="text-gradient">eficiente</span>
-                <br />
-                <span className="text-white">para escalar sin límites</span>
+                <span className="text-red-500">con seguridad y costes optimizados</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.0, delay: 0.4, ease: 'easeOut' }}
-                className="text-xl text-gray-300 leading-relaxed max-w-2xl"
+                className="text-xl text-slate-300 leading-relaxed max-w-2xl"
               >
-                Te ayudo a migrar, automatizar y optimizar tu infraestructura en AWS. 
-                Reduzco costes hasta un 40% mientras mejoro la seguridad y escalabilidad.
+                Migra, automatiza y optimiza tu infraestructura en AWS. Consigue hasta un 90% de ahorro mientras aumentas la seguridad y la disponibilidad 24/7.
               </motion.p>
             </div>
 
@@ -91,16 +88,16 @@ export default function Hero() {
               className="space-y-3"
             >
               <div className="flex items-center space-x-3">
-                <CheckCircle className="w-5 h-5 text-primary-500 flex-shrink-0" />
-                <span className="text-gray-300">Migración sin interrupciones</span>
+                <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                <span className="text-slate-300">Migraciones sin interrupciones</span>
               </div>
               <div className="flex items-center space-x-3">
-                <CheckCircle className="w-5 h-5 text-primary-500 flex-shrink-0" />
-                <span className="text-gray-300">Ahorro de costes garantizado</span>
+                <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                <span className="text-slate-300">Optimización de costes garantizada</span>
               </div>
               <div className="flex items-center space-x-3">
-                <CheckCircle className="w-5 h-5 text-primary-500 flex-shrink-0" />
-                <span className="text-gray-300">Soporte 24/7 durante la transición</span>
+                <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                <span className="text-slate-300">Soporte continuo durante la transición</span>
               </div>
             </motion.div>
 
@@ -109,13 +106,14 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, delay: 0.8, ease: 'easeOut' }}
-              className="bg-dark-900/50 backdrop-blur-sm border border-dark-800 rounded-xl p-6"
+              className="rounded-2xl border border-slate-700/50 bg-slate-900/60 backdrop-blur-sm p-6"
             >
+              <h3 className="text-lg font-semibold text-white mb-4">Reserva tu auditoría gratuita en 1 clic</h3>
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
                         Nombre *
                       </label>
                       <input
@@ -125,12 +123,12 @@ export default function Hero() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
                         placeholder="Tu nombre"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
                         Email *
                       </label>
                       <input
@@ -140,7 +138,7 @@ export default function Hero() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
                         placeholder="tu@email.com"
                       />
                     </div>
@@ -151,7 +149,7 @@ export default function Hero() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ type: 'tween', ease: 'easeOut' }}
-                    className="w-full btn-primary flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl px-5 py-3 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                   >
                     {isSubmitting ? (
                       <>
@@ -160,7 +158,7 @@ export default function Hero() {
                       </>
                     ) : (
                       <>
-                        <span>Solicitar Auditoría Gratuita</span>
+                        <span>Quiero mi auditoría gratuita</span>
                         <ArrowRight className="w-5 h-5" />
                       </>
                     )}
@@ -172,11 +170,8 @@ export default function Hero() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center space-y-3"
                 >
-                  <CheckCircle className="w-12 h-12 text-primary-500 mx-auto" />
-                  <h3 className="text-xl font-semibold text-white">¡Gracias!</h3>
-                  <p className="text-gray-300">
-                    Te contactaré en las próximas 24 horas para programar tu auditoría gratuita.
-                  </p>
+                  <CheckCircle className="w-12 h-12 text-red-500 mx-auto" />
+                  <h3 className="text-xl font-semibold text-white">Gracias. Te contactaremos en menos de 24h.</h3>
                 </motion.div>
               )}
             </motion.div>

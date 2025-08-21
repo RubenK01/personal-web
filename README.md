@@ -192,7 +192,7 @@ El proyecto incluye:
 
 ### Copy Persuasivo
 
-- **Beneficios orientados**: "Reduzco costes hasta un 40%"
+- **Beneficios orientados**: "Reduzco costes hasta un 90%"
 - **Urgencia**: "Consulta gratuita"
 - **Prueba social**: Testimonios reales
 - **Garantías**: "Soporte 24/7 durante la transición"

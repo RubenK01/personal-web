@@ -33,14 +33,14 @@ export default function About() {
   const stats = [
     {
       icon: Award,
-      value: '8+',
+      value: '9+',
       label: 'Años de Experiencia',
       description: 'En arquitectura cloud y DevOps'
     },
     {
       icon: Users,
       value: '50+',
-      label: 'Clientes Satisfechos',
+      label: 'Proyectos Completados',
       description: 'Startups y empresas establecidas'
     },
     {
@@ -52,7 +52,7 @@ export default function About() {
   ];
 
   return (
-    <section id="sobre-mi" className="section-padding bg-dark-900">
+    <section id="sobre-mi" className="section-padding bg-slate-900">
       <div className="container-custom px-3 sm:px-4">
         <motion.div
           ref={ref}
@@ -66,49 +66,39 @@ export default function About() {
             <div>
               <motion.h2
                 variants={itemVariants}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+                className="text-4xl md:text-5xl font-extrabold leading-tight mb-6"
               >
                 <span className="text-white">Sobre</span>
-                <span className="text-gradient"> mí</span>
+                <span className="text-red-500"> mí</span>
               </motion.h2>
               <motion.p
                 variants={itemVariants}
-                className="text-xl text-gray-300 leading-relaxed"
+                className="text-xl text-slate-300 leading-relaxed"
               >
-                Soy un consultor freelance especializado en AWS y DevOps con más de 8 años 
-                de experiencia ayudando a empresas a optimizar sus infraestructuras cloud.
+                Soy Rubén Casado, ingeniero de software especializado en DevOps y Cloud, con certificación AWS Architect Associate y más de 9 años de experiencia ayudando a startups y PYMEs a reducir costes, mejorar la seguridad y escalar sus sistemas.
               </motion.p>
             </div>
 
             <motion.div variants={itemVariants} className="space-y-6">
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-white">Mi enfoque:</h3>
-                <div className="space-y-3">
+                <h3 className="text-xl font-semibold text-white">Mi enfoque es simple:</h3>
+                <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-2xl">🔎</span>
                     <div>
-                      <span className="text-gray-300 font-medium">Análisis exhaustivo</span>
-                      <p className="text-gray-400 text-sm mt-1">
-                        Evaluación completa de tu infraestructura actual para identificar oportunidades de mejora.
-                      </p>
+                      <span className="text-slate-300 font-medium">Analizo tu infraestructura para identificar oportunidades de mejora.</span>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-2xl">⚡</span>
                     <div>
-                      <span className="text-gray-300 font-medium">Soluciones personalizadas</span>
-                      <p className="text-gray-400 text-sm mt-1">
-                        Cada empresa es única. Diseño estrategias específicas para tus necesidades.
-                      </p>
+                      <span className="text-slate-300 font-medium">Propongo soluciones prácticas y personalizadas.</span>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-2xl">🤝</span>
                     <div>
-                      <span className="text-gray-300 font-medium">Implementación gradual</span>
-                      <p className="text-gray-400 text-sm mt-1">
-                        Migraciones sin interrupciones, minimizando riesgos y maximizando beneficios.
-                      </p>
+                      <span className="text-slate-300 font-medium">Te acompaño de principio a fin, con soporte post-implementación.</span>
                     </div>
                   </div>
                 </div>
@@ -118,7 +108,7 @@ export default function About() {
             <motion.div variants={itemVariants}>
               <a
                 href="#contacto"
-                className="btn-primary inline-flex items-center space-x-2"
+                className="bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl px-5 py-3 inline-flex items-center space-x-2 transition-colors duration-200"
               >
                 <span>Conoce mi trabajo</span>
                 <CheckCircle className="w-5 h-5" />
@@ -139,7 +129,7 @@ export default function About() {
               </div>
               
               {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center">
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-red-500 rounded-full flex items-center justify-center">
                 <Award className="w-8 h-8 text-white" />
               </div>
               <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
@@ -159,14 +149,14 @@ export default function About() {
                     key={stat.label}
                     variants={itemVariants}
                     whileHover={{ y: -5 }}
-                    className="text-center p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-primary-500 transition-all duration-200"
+                    className="text-center p-6 rounded-2xl border border-slate-700/50 bg-slate-900/60 backdrop-blur-sm hover:border-red-500/50 transition-all duration-200"
                   >
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
                     <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                    <div className="text-sm font-medium text-gray-300 mb-1">{stat.label}</div>
-                    <div className="text-xs text-gray-400">{stat.description}</div>
+                    <div className="text-sm font-medium text-slate-300 mb-1">{stat.label}</div>
+                    <div className="text-xs text-slate-400">{stat.description}</div>
                   </motion.div>
                 );
               })}
