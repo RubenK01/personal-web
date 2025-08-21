@@ -51,9 +51,9 @@ export default function Navigation() {
             className="flex items-center space-x-2"
           >
             <span className="inline-flex items-center space-x-2">
-                <span className="md:hidden">
-                  <span className="font-extrabold text-2xl tracking-tight text-white">Rubén C.</span>
-                  <span className="ml-2 text-gray-400 text-sm"> DevSecOps & Cloud Engineer</span>
+                <span className="md:hidden flex flex-col">
+                  <span className="font-extrabold text-2xl tracking-tight text-white">Rubén Casado</span>
+                  <span className="text-gray-400 text-sm">DevSecOps & Cloud Engineer</span>
                 </span>
                 <span className="hidden md:inline font-extrabold text-2xl tracking-tight text-white">Rubén Casado</span>
                 <span className="hidden md:inline text-gray-400 text-base">· DevSecOps & Cloud Engineer</span>
