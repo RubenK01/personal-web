@@ -9,22 +9,17 @@ export default function Footer() {
   const socialLinks = [
     {
       name: 'GitHub',
-      href: 'https://github.com/tu-usuario',
+      href: 'https://github.com/RubenK01',
       icon: Github
     },
     {
       name: 'LinkedIn',
-      href: 'https://linkedin.com/in/tu-perfil',
+      href: 'https://www.linkedin.com/in/ruben-casado-00ads1',
       icon: Linkedin
     },
     {
-      name: 'Twitter',
-      href: 'https://twitter.com/tu-usuario',
-      icon: Twitter
-    },
-    {
       name: 'Email',
-      href: 'mailto:tu@email.com',
+      href: 'mailto:rcasadodev@gmail.com',
       icon: Mail
     }
   ];
@@ -37,15 +32,13 @@ export default function Footer() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">A</span>
-                </div>
-                <span className="text-white font-bold text-xl">AWS Consultant</span>
+                
+                <span className="text-white font-bold text-xl">DevSecOps & Cloud Engineer | Freelance</span>
               </div>
               <p className="text-gray-400 mb-6 max-w-md">
-                Consultor freelance especializado en AWS y DevOps. 
+                Consultor freelance especializado en AWS y DevSecOps. 
                 Ayudo a empresas a optimizar sus infraestructuras cloud, 
-                reducir costes y mejorar la seguridad.
+                reducir costes y mejorar la seguridad ofreciendo soluciones a medida.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => {
@@ -104,17 +97,17 @@ export default function Footer() {
               <h3 className="text-white font-semibold mb-4">Contacto</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="mailto:tu@email.com" className="text-gray-400 hover:text-white transition-colors duration-200">
-                    tu@email.com
+                  <a href="mailto:rcasadodev@gmail.com" className="text-gray-400 hover:text-white transition-colors duration-200">
+                    rcasadodev@gmail.com
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+34600000000" className="text-gray-400 hover:text-white transition-colors duration-200">
-                    +34 600 000 000
+                  <a href="tel:+34664656038" className="text-gray-400 hover:text-white transition-colors duration-200">
+                    +34 664 656 038
                   </a>
                 </li>
                 <li className="text-gray-400">
-                  España (Remoto)
+                  Madrid, España
                 </li>
               </ul>
             </div>
@@ -125,7 +118,7 @@ export default function Footer() {
         <div className="border-t border-dark-800 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              © {currentYear} AWS Consultant. Todos los derechos reservados.
+              © {currentYear} Rubén Casado Domínguez. Todos los derechos reservados.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
