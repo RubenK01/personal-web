@@ -127,14 +127,6 @@ export default function About() {
                   className="w-full h-full object-cover" 
                 />
               </div>
-              
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-red-500 rounded-full flex items-center justify-center">
-                <Award className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
-                <CheckCircle className="w-6 h-6 text-white" />
-              </div>
             </div>
 
             {/* Stats Grid */}

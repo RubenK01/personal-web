@@ -83,7 +83,7 @@ export default function Contact() {
       icon: MapPin,
       title: 'Ubicación',
       value: 'Madrid, España',
-      href: '#'
+      href: '#contacto'
     }
   ];
 

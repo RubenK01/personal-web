@@ -108,7 +108,10 @@ export default function Hero() {
               transition={{ duration: 1.0, delay: 0.8, ease: 'easeOut' }}
               className="rounded-2xl border border-slate-700/50 bg-slate-900/60 backdrop-blur-sm p-6"
             >
-              <h3 className="text-lg font-semibold text-white mb-4">Reserva tu auditoría gratuita en 1 clic</h3>
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold text-white">Reserva tu consulta gratuita en 1 clic</h3>
+                <h3 className="text-red-500 font-bold text-md mt-1">¡Sin compromiso y 0 SPAM!</h3>
+              </div>
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -158,7 +161,7 @@ export default function Hero() {
                       </>
                     ) : (
                       <>
-                        <span>Quiero mi auditoría gratuita</span>
+                        <span>Quiero mi consulta gratuita</span>
                         <ArrowRight className="w-5 h-5" />
                       </>
                     )}

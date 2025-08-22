@@ -106,15 +106,6 @@ export default function Services() {
                     </ul>
                   </div>
                 </div>
-                
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  whileHover={{ opacity: 1, x: 0 }}
-                  className="mt-6 flex items-center text-red-500 font-medium group-hover:text-red-400 transition-colors duration-300 ease-out"
-                >
-                  <span className="text-sm">Saber más</span>
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 ease-out" />
-                </motion.div>
               </motion.div>
             );
           })}
