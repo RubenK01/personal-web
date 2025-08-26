@@ -56,10 +56,7 @@ export default function Hero() {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', company: '', phone: '' });
         
-        // Reset form after 3 seconds
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 3000);
+        // Mantener mensaje de éxito visible (no auto-reset)
       } else {
         throw new Error(result.message || 'Error al enviar el formulario');
       }
@@ -230,10 +227,20 @@ export default function Hero() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center space-y-3"
+                  className="text-center space-y-4"
                 >
                   <CheckCircle className="w-12 h-12 text-red-500 mx-auto" />
-                  <h3 className="text-xl font-semibold text-white">Gracias. Te contactaremos en menos de 24h.</h3>
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-semibold text-white">¡Mensaje enviado!</h3>
+                    <p className="text-slate-300">Te contactaremos en menos de 24h.</p>
+                  </div>
+                  <button
+                    onClick={() => setIsSubmitted(false)}
+                    className="inline-flex items-center space-x-2 text-red-500 hover:text-red-400 font-medium transition-colors duration-200"
+                  >
+                    <span>Enviar otro mensaje</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </motion.div>
               )}
             </motion.div>

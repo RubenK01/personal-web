@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Mail, MessageCircle, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Mail, MessageCircle, MapPin, Send, CheckCircle, ArrowRight } from 'lucide-react';
 import { ContactForm } from '@/types';
 import { WhatsappIcon } from '@/components/icons/WhatsappIcon';
 
@@ -58,10 +58,7 @@ export default function Contact() {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', company: '', phone: '', message: '' });
         
-        // Reset form after 5 seconds
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 5000);
+        // Mantener mensaje de éxito visible (no auto-reset)
       } else {
         throw new Error(result.message || 'Error al enviar el formulario');
       }
@@ -258,14 +255,23 @@ export default function Contact() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center space-y-4"
+                  className="text-center space-y-6"
                 >
-                  <CheckCircle className="w-16 h-16 text-primary-500 mx-auto" />
-                  <h3 className="text-2xl font-semibold text-white">¡Mensaje enviado!</h3>
-                  <p className="text-gray-300">
-                    Gracias por contactar. Te responderé en las próximas 24 horas 
-                    para programar una consulta gratuita.
-                  </p>
+                  <CheckCircle className="w-16 h-16 text-red-500 mx-auto" />
+                  <div className="space-y-3">
+                    <h3 className="text-2xl font-semibold text-white">¡Mensaje enviado!</h3>
+                    <p className="text-slate-300">
+                      Gracias por contactar. Te responderé en las próximas 24 horas 
+                      para programar una consulta gratuita.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setIsSubmitted(false)}
+                    className="inline-flex items-center space-x-2 text-red-500 hover:text-red-400 font-medium transition-colors duration-200"
+                  >
+                    <span>Enviar otro mensaje</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </motion.div>
               )}
             </div>
