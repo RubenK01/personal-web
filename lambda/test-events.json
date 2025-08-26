@@ -1,0 +1,97 @@
+{
+  "testEvents": [
+    {
+      "name": "FormularioContactoCompleto",
+      "description": "Evento de prueba con todos los campos del formulario de contacto",
+      "event": {
+        "body": "{\"name\":\"Juan Pérez\",\"email\":\"juan.perez@example.com\",\"company\":\"Tech Solutions SL\",\"message\":\"Hola, estoy interesado en sus servicios de migración a AWS. Tenemos una aplicación en servidores físicos y queremos moverla a la nube. ¿Podrían ayudarnos con una consulta?\"}",
+        "headers": {
+          "Content-Type": "application/json",
+          "Origin": "https://rcasado.cloud"
+        },
+        "httpMethod": "POST",
+        "path": "/contact",
+        "queryStringParameters": null,
+        "pathParameters": null,
+        "requestContext": {
+          "requestId": "test-request-id",
+          "requestTime": "09/Jan/2023:11:08:56 +0000",
+          "requestTimeEpoch": 1641724136000
+        }
+      }
+    },
+    {
+      "name": "FormularioHeroSimple",
+      "description": "Evento desde el formulario principal (Hero) con datos mínimos",
+      "event": {
+        "body": "{\"name\":\"María García\",\"email\":\"maria.garcia@startup.com\",\"company\":\"No especificado\",\"message\":\"Solicitud de auditoría gratuita desde el formulario principal.\"}",
+        "headers": {
+          "Content-Type": "application/json",
+          "Origin": "https://rcasado.cloud"
+        },
+        "httpMethod": "POST",
+        "path": "/contact"
+      }
+    },
+    {
+      "name": "EmailInvalido",
+      "description": "Prueba de validación con email inválido",
+      "event": {
+        "body": "{\"name\":\"Test User\",\"email\":\"email-sin-dominio\",\"company\":\"Test Company\",\"message\":\"Este es un test con email inválido\"}",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "httpMethod": "POST",
+        "path": "/contact"
+      }
+    },
+    {
+      "name": "CamposVacios",
+      "description": "Prueba con campos vacíos",
+      "event": {
+        "body": "{\"name\":\"\",\"email\":\"\",\"company\":\"\",\"message\":\"\"}",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "httpMethod": "POST",
+        "path": "/contact"
+      }
+    },
+    {
+      "name": "JSONMalformado",
+      "description": "Prueba con JSON inválido",
+      "event": {
+        "body": "{\"name\":\"Test\",\"email\":\"test@test.com\",\"message\":\"JSON sin cerrar\"",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "httpMethod": "POST",
+        "path": "/contact"
+      }
+    },
+    {
+      "name": "CaracteresEspeciales",
+      "description": "Prueba con caracteres especiales y emojis",
+      "event": {
+        "body": "{\"name\":\"José María Ñoño\",\"email\":\"jose.maria@ñoño.es\",\"company\":\"Café & Más S.L.\",\"message\":\"Hola! 👋 Queremos migrar nuestra web 🌐 a AWS. ¿Podrían ayudarnos? Tenemos ~500 usuarios/día y necesitamos 99.9% uptime 📈\"}",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "httpMethod": "POST",
+        "path": "/contact"
+      }
+    },
+    {
+      "name": "MensajeLargo",
+      "description": "Prueba con mensaje muy extenso",
+      "event": {
+        "body": "{\"name\":\"Director Técnico\",\"email\":\"cto@empresa.com\",\"company\":\"Empresa Grande S.A.\",\"message\":\"Estimado Rubén, somos una empresa del sector financiero con más de 200 empleados. Actualmente tenemos nuestra infraestructura en un datacenter propio pero estamos evaluando migrar a AWS por temas de costes y escalabilidad. Tenemos las siguientes aplicaciones críticas: 1) Sistema core bancario (Java Spring Boot), 2) Portal web (React + Node.js), 3) API REST para móviles, 4) Sistema de reportes (Python + PostgreSQL). Necesitaríamos: - Análisis de costes actual vs AWS, - Plan de migración por fases, - Configuración de CI/CD, - Monitorización avanzada, - Backup y disaster recovery. ¿Podrías enviarnos una propuesta detallada?\"}",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "httpMethod": "POST",
+        "path": "/contact"
+      }
+    }
+  ]
+}
