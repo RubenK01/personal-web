@@ -10,7 +10,8 @@ import IconTile from '@/components/icons/IconTile';
 export default function Hero() {
   const [formData, setFormData] = useState<LeadForm>({
     name: '',
-    email: ''
+    email: '',
+    company: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -39,7 +40,7 @@ export default function Hero() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          company: 'No especificado', // Hero form no tiene empresa
+          company: formData.company || 'No especificado',
           message: `Solicitud de auditoría gratuita desde el formulario principal.`
         })
       });
@@ -48,7 +49,7 @@ export default function Hero() {
 
       if (result.success) {
         setIsSubmitted(true);
-        setFormData({ name: '', email: '' });
+        setFormData({ name: '', email: '', company: '' });
         
         // Reset form after 3 seconds
         setTimeout(() => {
@@ -153,6 +154,20 @@ export default function Hero() {
                         required
                         className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
                         placeholder="Tu nombre"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="company" className="block text-sm font-medium text-slate-300 mb-2">
+                        Empresa (opcional)
+                      </label>
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                        placeholder="Nombre de tu empresa"
                       />
                     </div>
                     <div>

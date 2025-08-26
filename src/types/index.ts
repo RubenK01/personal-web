@@ -25,12 +25,14 @@ export interface Testimonial {
 export interface ContactForm {
   name: string;
   email: string;
+  company?: string;
   message: string;
 }
 
 export interface LeadForm {
   name: string;
   email: string;
+  company?: string;
 }
 
 export interface NavItem {

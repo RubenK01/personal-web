@@ -15,6 +15,7 @@ export default function Contact() {
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
+    company: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -183,6 +184,21 @@ export default function Contact() {
                       required
                       className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                       placeholder="tu@email.com"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
+                      Empresa (opcional)
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                      placeholder="Nombre de tu empresa"
                     />
                   </div>
                   
