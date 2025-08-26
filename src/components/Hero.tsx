@@ -11,7 +11,8 @@ export default function Hero() {
   const [formData, setFormData] = useState<LeadForm>({
     name: '',
     email: '',
-    company: ''
+    company: '',
+    phone: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -32,6 +33,9 @@ export default function Hero() {
       // TODO: Reemplazar con tu URL de API Gateway cuando la tengas
       const API_ENDPOINT = process.env.NEXT_PUBLIC_LAMBDA_ENDPOINT || 'https://api.rcasado.cloud/prod/contact';
       
+      console.log('🔗 Enviando a:', API_ENDPOINT);
+      console.log('📝 Datos:', { name: formData.name, email: formData.email, company: formData.company || 'No especificado', phone: formData.phone || 'No especificado' });
+      
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -41,6 +45,7 @@ export default function Hero() {
           name: formData.name,
           email: formData.email,
           company: formData.company || 'No especificado',
+          phone: formData.phone || 'No especificado',
           message: `Solicitud de auditoría gratuita desde el formulario principal.`
         })
       });
@@ -49,7 +54,7 @@ export default function Hero() {
 
       if (result.success) {
         setIsSubmitted(true);
-        setFormData({ name: '', email: '', company: '' });
+        setFormData({ name: '', email: '', company: '', phone: '' });
         
         // Reset form after 3 seconds
         setTimeout(() => {
@@ -168,6 +173,20 @@ export default function Hero() {
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
                         placeholder="Nombre de tu empresa"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-slate-300 mb-2">
+                        Teléfono (opcional)
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                        placeholder="+34 600 000 000"
                       />
                     </div>
                     <div>

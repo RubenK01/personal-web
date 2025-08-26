@@ -16,6 +16,7 @@ export default function Contact() {
     name: '',
     email: '',
     company: '',
+    phone: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,7 +47,8 @@ export default function Contact() {
           name: formData.name,
           email: formData.email,
           company: formData.company || 'No especificado',
-          message: formData.message
+          phone: formData.phone || 'No especificado',
+          message: formData.message || 'Sin mensaje específico'
         })
       });
 
@@ -54,7 +56,7 @@ export default function Contact() {
 
       if (result.success) {
         setIsSubmitted(true);
-        setFormData({ name: '', email: '', company: '', message: '' });
+        setFormData({ name: '', email: '', company: '', phone: '', message: '' });
         
         // Reset form after 5 seconds
         setTimeout(() => {
@@ -203,15 +205,29 @@ export default function Contact() {
                   </div>
                   
                   <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                      Teléfono (opcional)
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                      placeholder="+34 600 000 000"
+                    />
+                  </div>
+                  
+                  <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                      Mensaje *
+                      Mensaje (opcional)
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      required
                       rows={5}
                       className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none"
                       placeholder="Cuéntame sobre tu proyecto y objetivos..."

@@ -4,7 +4,7 @@
       "name": "FormularioContactoCompleto",
       "description": "Evento de prueba con todos los campos del formulario de contacto",
       "event": {
-        "body": "{\"name\":\"Juan Pérez\",\"email\":\"juan.perez@example.com\",\"company\":\"Tech Solutions SL\",\"message\":\"Hola, estoy interesado en sus servicios de migración a AWS. Tenemos una aplicación en servidores físicos y queremos moverla a la nube. ¿Podrían ayudarnos con una consulta?\"}",
+        "body": "{\"name\":\"Juan Pérez\",\"email\":\"juan.perez@example.com\",\"company\":\"Tech Solutions SL\",\"phone\":\"+34 666 123 456\",\"message\":\"Hola, estoy interesado en sus servicios de migración a AWS. Tenemos una aplicación en servidores físicos y queremos moverla a la nube. ¿Podrían ayudarnos con una consulta?\"}",
         "headers": {
           "Content-Type": "application/json",
           "Origin": "https://rcasado.cloud"
@@ -24,7 +24,7 @@
       "name": "FormularioHeroSimple",
       "description": "Evento desde el formulario principal (Hero) con datos mínimos",
       "event": {
-        "body": "{\"name\":\"María García\",\"email\":\"maria.garcia@startup.com\",\"company\":\"No especificado\",\"message\":\"Solicitud de auditoría gratuita desde el formulario principal.\"}",
+        "body": "{\"name\":\"María García\",\"email\":\"maria.garcia@startup.com\",\"company\":\"StartupTech\",\"phone\":\"+34 600 000 000\",\"message\":\"Solicitud de auditoría gratuita desde el formulario principal.\"}",
         "headers": {
           "Content-Type": "application/json",
           "Origin": "https://rcasado.cloud"

@@ -20,6 +20,19 @@ def lambda_handler(event, context):
     aws_region = os.environ.get('AWS_REGION', 'eu-west-1')
     
     try:
+        # Manejar preflight CORS (OPTIONS)
+        if event.get('httpMethod') == 'OPTIONS':
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'POST,OPTIONS',
+                    'Access-Control-Allow-Credentials': 'false'
+                },
+                'body': ''
+            }
+        
         # Debug: imprimir el evento completo
         print(f"Evento recibido: {json.dumps(event, indent=2)}")
         
@@ -39,10 +52,11 @@ def lambda_handler(event, context):
         name = body.get('name', 'No especificado')
         email = body.get('email', 'No especificado')
         company = body.get('company', 'No especificado')
+        phone = body.get('phone', 'No especificado')
         message = body.get('message', 'No especificado')
         
         # Debug logging
-        print(f"Datos recibidos: name={name}, email={email}, company={company}")
+        print(f"Datos recibidos: name={name}, email={email}, company={company}, phone={phone}")
         
         # Validación básica mejorada
         if not email or email == 'No especificado' or '@' not in email or '.' not in email:
@@ -50,8 +64,9 @@ def lambda_handler(event, context):
                 'statusCode': 400,
                 'headers': {
                     'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Methods': 'POST'
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'POST,OPTIONS',
+                    'Access-Control-Allow-Credentials': 'false'
                 },
                 'body': json.dumps({
                     'success': False,
@@ -100,6 +115,10 @@ def lambda_handler(event, context):
                             <td style="padding: 8px 0;">{company}</td>
                         </tr>
                         <tr>
+                            <td style="padding: 8px 0; font-weight: bold;">Teléfono:</td>
+                            <td style="padding: 8px 0;"><a href="tel:{phone}" style="color: #ef4444;">{phone}</a></td>
+                        </tr>
+                        <tr>
                             <td style="padding: 8px 0; font-weight: bold;">Fecha:</td>
                             <td style="padding: 8px 0;">{timestamp}</td>
                         </tr>
@@ -137,6 +156,7 @@ def lambda_handler(event, context):
         - Nombre: {name}
         - Email: {email}
         - Empresa: {company}
+        - Teléfono: {phone}
         - Fecha: {timestamp}
         
         Mensaje:
@@ -178,8 +198,9 @@ def lambda_handler(event, context):
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST'
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,OPTIONS',
+                'Access-Control-Allow-Credentials': 'false'
             },
             'body': json.dumps({
                 'success': True,
@@ -203,8 +224,9 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST'
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,OPTIONS',
+                'Access-Control-Allow-Credentials': 'false'
             },
             'body': json.dumps({
                 'success': False,
@@ -218,8 +240,9 @@ def lambda_handler(event, context):
             'statusCode': 400,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST'
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,OPTIONS',
+                'Access-Control-Allow-Credentials': 'false'
             },
             'body': json.dumps({
                 'success': False,
@@ -233,8 +256,9 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST'
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'POST,OPTIONS',
+                'Access-Control-Allow-Credentials': 'false'
             },
             'body': json.dumps({
                 'success': False,
