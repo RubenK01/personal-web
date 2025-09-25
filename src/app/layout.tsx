@@ -1,16 +1,19 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Cloud & DevSecOps Engineer Freelance | Migración, CI/CD, Arquitectura y Microservicios',
-  description: 'Diseño y optimizo infraestructuras AWS para startups y pymes. Migraciones cloud, pipelines CI/CD, seguridad y ahorro de costes. Contacta para una consultoría gratuita.',
+  title:
+    'Cloud & DevSecOps Engineer Freelance | Migración, CI/CD, Arquitectura y Microservicios',
+  description:
+    'Diseño y optimizo infraestructuras AWS para startups y pymes. Migraciones cloud, pipelines CI/CD, seguridad y ahorro de costes. Contacta para una consultoría gratuita.',
   icons: {
     icon: '/favicon-2.png',
   },
-  keywords: 'AWS, DevOps, DevSecOps, consultor, cloud, migración cloud, CI/CD, arquitectura, microservicios, serverless, freelance',
+  keywords:
+    'AWS, DevOps, DevSecOps, consultor, cloud, migración cloud, CI/CD, arquitectura, microservicios, serverless, freelance',
   authors: [{ name: 'Rubén Casado' }],
   creator: 'Rubén Casado',
   publisher: 'Rubén Casado',
@@ -24,13 +27,15 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Cloud & DevSecOps Engineer Freelance | Migración, CI/CD, Arquitectura y Microservicios',
-    description: 'Diseño y optimizo infraestructuras AWS para startups y pymes. Migraciones cloud, pipelines CI/CD, seguridad y ahorro de costes.',
+    title:
+      'Cloud & DevSecOps Engineer Freelance | Migración, CI/CD, Arquitectura y Microservicios',
+    description:
+      'Diseño y optimizo infraestructuras AWS para startups y pymes. Migraciones cloud, pipelines CI/CD, seguridad y ahorro de costes.',
     url: 'https://rcasado.cloud',
     siteName: 'Cloud & DevSecOps Engineer Freelance',
     images: [
       {
-        url: '/foto.jpg',
+        url: '/foto.png',
         width: 1200,
         height: 630,
         alt: 'Cloud & DevSecOps Engineer Freelance',
@@ -41,9 +46,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cloud & DevSecOps Engineer Freelance | Migración, CI/CD, Arquitectura y Microservicios',
-    description: 'Diseño y optimizo infraestructuras AWS para startups y pymes. Migraciones cloud, pipelines CI/CD, seguridad y ahorro de costes.',
-    images: ['/foto.jpg'],
+    title:
+      'Cloud & DevSecOps Engineer Freelance | Migración, CI/CD, Arquitectura y Microservicios',
+    description:
+      'Diseño y optimizo infraestructuras AWS para startups y pymes. Migraciones cloud, pipelines CI/CD, seguridad y ahorro de costes.',
+    images: ['/foto.png'],
   },
   robots: {
     index: true,
@@ -59,12 +66,12 @@ export const metadata: Metadata = {
   verification: {
     google: 'tu-google-verification-code',
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="es">
@@ -76,9 +83,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#0B0D20" />
       </head>
-      <body className={inter.className}>
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
-  )
-} 
+  );
+}
