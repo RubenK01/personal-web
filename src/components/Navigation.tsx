@@ -108,7 +108,7 @@ export default function Navigation() {
           </motion.a>
 
           {/* Desktop Navigation + CTA (right aligned) */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden nav:flex items-center space-x-6">
             <div className="flex items-center space-x-6">
               {navigationItems.map((item, index) => (
                 <motion.a
@@ -148,7 +148,7 @@ export default function Navigation() {
             transition={{ duration: 0.5, delay: 0.4 }}
             onClick={toggleMenu}
             ref={buttonRef}
-            className="md:hidden p-2 text-gray-300 hover:text-white transition-colors duration-200"
+            className="nav:hidden p-2 text-gray-300 hover:text-white transition-colors duration-200"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -167,7 +167,7 @@ export default function Navigation() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setIsOpen(false)}
-                className="fixed inset-0 bg-black/40 backdrop-blur-[1px] md:hidden z-40"
+                className="fixed inset-0 bg-black/40 backdrop-blur-[1px] nav:hidden z-40"
               />
 
               <motion.div
@@ -175,7 +175,7 @@ export default function Navigation() {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="md:hidden border-t border-dark-800 bg-dark-950/95 backdrop-blur-sm z-50 relative"
+                className="nav:hidden border-t border-dark-800 bg-dark-950/95 backdrop-blur-sm z-50 relative"
                 ref={panelRef}
               >
                 <div className="px-4 py-6 space-y-4">

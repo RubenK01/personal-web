@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        nav: '1120px',
+      },
       colors: {
         primary: {
           50: '#fef2f2',

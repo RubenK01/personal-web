@@ -12,30 +12,37 @@ export default function Hero() {
     name: '',
     email: '',
     company: '',
-    phone: ''
+    phone: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // TODO: Reemplazar con tu URL de API Gateway cuando la tengas
-      const API_ENDPOINT = process.env.NEXT_PUBLIC_LAMBDA_ENDPOINT || 'https://api.rcasado.cloud/prod/contact';
-      
+      const API_ENDPOINT =
+        process.env.NEXT_PUBLIC_LAMBDA_ENDPOINT ||
+        'https://api.rcasado.cloud/prod/contact';
+
       console.log('🔗 Enviando a:', API_ENDPOINT);
-      console.log('📝 Datos:', { name: formData.name, email: formData.email, company: formData.company || 'No especificado', phone: formData.phone || 'No especificado' });
-      
+      console.log('📝 Datos:', {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || 'No especificado',
+        phone: formData.phone || 'No especificado',
+      });
+
       const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: {
@@ -46,8 +53,8 @@ export default function Hero() {
           email: formData.email,
           company: formData.company || 'No especificado',
           phone: formData.phone || 'No especificado',
-          message: `Solicitud de auditoría gratuita desde el formulario principal.`
-        })
+          message: `Solicitud de auditoría gratuita desde el formulario principal.`,
+        }),
       });
 
       const result = await response.json();
@@ -55,7 +62,7 @@ export default function Hero() {
       if (result.success) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', company: '', phone: '' });
-        
+
         // Mantener mensaje de éxito visible (no auto-reset)
       } else {
         throw new Error(result.message || 'Error al enviar el formulario');
@@ -72,9 +79,12 @@ export default function Hero() {
     <section className="section-padding min-h-screen flex items-center justify-center bg-slate-950 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-950">
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
       </div>
 
       <div className="container-custom relative z-10 pt-20">
@@ -95,7 +105,9 @@ export default function Hero() {
               >
                 <span className="text-white">Escala tu negocio en la nube</span>
                 <br />
-                <span className="text-red-500">con seguridad y costes optimizados</span>
+                <span className="text-red-500">
+                  con seguridad y costes optimizados
+                </span>
               </motion.h1>
 
               <motion.p
@@ -104,7 +116,9 @@ export default function Hero() {
                 transition={{ duration: 1.0, delay: 0.4, ease: 'easeOut' }}
                 className="text-xl text-slate-300 leading-relaxed max-w-2xl"
               >
-                Migra, automatiza y optimiza tu infraestructura en AWS. Consigue hasta un 90% de ahorro mientras aumentas la seguridad y la disponibilidad 24/7.
+                Migra, optimiza y protege tu infraestructura en AWS. Consigue
+                hasta un 90% de ahorro mientras aumentas la seguridad y la
+                disponibilidad 24/7.
               </motion.p>
             </div>
 
@@ -117,15 +131,27 @@ export default function Hero() {
             >
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-                <span className="text-slate-300">Migraciones sin interrupciones</span>
+                <span className="text-slate-300">
+                  Migraciones sin interrupciones
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-                <span className="text-slate-300">Optimización de costes garantizada</span>
+                <span className="text-slate-300">
+                  Optimización de costes garantizada
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-                <span className="text-slate-300">Soporte continuo durante la transición</span>
+                <span className="text-slate-300">
+                  Soporte continuo durante la transición
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                <span className="text-slate-300">
+                  Protección avanzada de tu infraestructura
+                </span>
               </div>
             </motion.div>
 
@@ -137,14 +163,21 @@ export default function Hero() {
               className="rounded-2xl border border-slate-700/50 bg-slate-900/60 backdrop-blur-sm p-6"
             >
               <div className="mb-4">
-                <h3 className="text-lg font-semibold text-white">Reserva tu consulta gratuita en 1 clic</h3>
-                <h3 className="text-red-500 font-bold text-md mt-1">¡Sin compromiso y 0 SPAM!</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  Reserva tu consulta gratuita en 1 clic
+                </h3>
+                <h3 className="text-red-500 font-bold text-md mt-1">
+                  ¡Sin compromiso y 0 SPAM!
+                </h3>
               </div>
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-slate-300 mb-2"
+                      >
                         Nombre *
                       </label>
                       <input
@@ -159,7 +192,10 @@ export default function Hero() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-slate-300 mb-2">
+                      <label
+                        htmlFor="company"
+                        className="block text-sm font-medium text-slate-300 mb-2"
+                      >
                         Empresa (opcional)
                       </label>
                       <input
@@ -173,7 +209,10 @@ export default function Hero() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-slate-300 mb-2">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-slate-300 mb-2"
+                      >
                         Teléfono (opcional)
                       </label>
                       <input
@@ -187,7 +226,10 @@ export default function Hero() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-slate-300 mb-2"
+                      >
                         Email *
                       </label>
                       <input
@@ -231,8 +273,12 @@ export default function Hero() {
                 >
                   <CheckCircle className="w-12 h-12 text-red-500 mx-auto" />
                   <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-white">¡Mensaje enviado!</h3>
-                    <p className="text-slate-300">Te contactaremos en menos de 24h.</p>
+                    <h3 className="text-xl font-semibold text-white">
+                      ¡Mensaje enviado!
+                    </h3>
+                    <p className="text-slate-300">
+                      Te contactaremos en menos de 24h.
+                    </p>
                   </div>
                   <button
                     onClick={() => setIsSubmitted(false)}
@@ -253,7 +299,7 @@ export default function Hero() {
             transition={{ duration: 1.0, delay: 0.4, ease: 'easeOut' }}
             className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-4 gap-3 sm:gap-4 mt-6 md:mt-0 justify-items-center mb-8"
           >
-            {([
+            {[
               // Top row (más relevantes)
               { name: 'AWS', file: 'aws.svg' },
               { name: 'Docker', file: 'docker-mark-blue.svg' },
@@ -269,12 +315,16 @@ export default function Hero() {
               { name: 'GitLab', file: 'gitlab.svg' },
               { name: 'Jenkins', file: 'jenkins.svg' },
               { name: 'Prometheus', file: 'prometheus-icon-color.svg' },
-            ]).map((item, index) => (
+            ].map((item, index) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 + index * 0.05 }}
+                transition={{
+                  duration: 0.6,
+                  ease: 'easeOut',
+                  delay: 0.6 + index * 0.05,
+                }}
               >
                 <IconTile label={item.name}>
                   <img src={`/icons-pack/${item.file}`} alt={item.name} />
@@ -286,4 +336,4 @@ export default function Hero() {
       </div>
     </section>
   );
-} 
+}
