@@ -1,5 +1,6 @@
 'use client';
 
+import type { MouseEvent as ReactMouseEvent } from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -15,10 +16,54 @@ const navigationItems: NavItem[] = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [pathname, setPathname] = useState(() => (typeof window !== 'undefined' ? window.location.pathname : '/'));
   const panelRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const updatePathname = () => {
+      setPathname(window.location.pathname);
+    };
+    window.addEventListener('popstate', updatePathname);
+    window.addEventListener('hashchange', updatePathname);
+    return () => {
+      window.removeEventListener('popstate', updatePathname);
+      window.removeEventListener('hashchange', updatePathname);
+    };
+  }, []);
+
+  const isHome = pathname === '/' || pathname === '/index.html';
+
+  const resolveHref = (target: string) => {
+    if (!target.startsWith('#')) {
+      return target;
+    }
+    return isHome ? target : `/${target}`;
+  };
+
+  const handleInPageNavigation = (event: ReactMouseEvent<HTMLAnchorElement>, target: string) => {
+    if (typeof window === 'undefined') return;
+    if (!isHome || !target.startsWith('#')) return;
+
+    event.preventDefault();
+    const element = document.querySelector(target);
+    if (element instanceof HTMLElement) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    window.history.replaceState(null, '', target);
+  };
+
+  const handleBrandClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
+    if (typeof window === 'undefined') return;
+    if (!isHome) return;
+
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.history.replaceState(null, '', '/');
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -44,21 +89,23 @@ export default function Navigation() {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
           {/* Logo */}
-          <motion.div
+          <motion.a
+            href="/"
+            onClick={handleBrandClick}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="flex items-center space-x-2"
           >
             <span className="inline-flex items-center space-x-2">
-                <span className="md:hidden flex flex-col">
-                  <span className="font-extrabold text-2xl tracking-tight text-white">Rubén Casado</span>
-                  <span className="text-gray-400 text-sm">DevSecOps & Cloud Engineer</span>
-                </span>
-                <span className="hidden md:inline font-extrabold text-2xl tracking-tight text-white">Rubén Casado</span>
-                <span className="hidden md:inline text-gray-400 text-base">· DevSecOps & Cloud Engineer</span>
+              <span className="md:hidden flex flex-col">
+                <span className="font-extrabold text-2xl tracking-tight text-white">Rubén Casado</span>
+                <span className="text-gray-400 text-sm">DevSecOps & Cloud Engineer</span>
               </span>
-          </motion.div>
+              <span className="hidden md:inline font-extrabold text-2xl tracking-tight text-white">Rubén Casado</span>
+              <span className="hidden md:inline text-gray-400 text-base">· DevSecOps & Cloud Engineer</span>
+            </span>
+          </motion.a>
 
           {/* Desktop Navigation + CTA (right aligned) */}
           <div className="hidden md:flex items-center space-x-6">
@@ -66,10 +113,11 @@ export default function Navigation() {
               {navigationItems.map((item, index) => (
                 <motion.a
                   key={item.label}
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                  onClick={(event) => handleInPageNavigation(event, item.href)}
                   className="text-gray-300 hover:text-white transition-colors duration-200 font-medium flex items-center space-x-1 group"
                 >
                   <span>{item.label}</span>
@@ -83,7 +131,13 @@ export default function Navigation() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="pl-2"
             >
-              <a href="#contacto" className="btn-primary">Contactar</a>
+              <a
+                href={resolveHref('#contacto')}
+                onClick={(event) => handleInPageNavigation(event, '#contacto')}
+                className="btn-primary"
+              >
+                Contactar
+              </a>
             </motion.div>
           </div>
 
@@ -128,11 +182,14 @@ export default function Navigation() {
                   {navigationItems.map((item, index) => (
                     <motion.a
                       key={item.label}
-                      href={item.href}
+                      href={resolveHref(item.href)}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
-                      onClick={() => setIsOpen(false)}
+                      onClick={(event) => {
+                        handleInPageNavigation(event, item.href);
+                        setIsOpen(false);
+                      }}
                       className="block text-gray-300 hover:text-white transition-colors duration-200 font-medium py-2"
                     >
                       {item.label}
@@ -145,8 +202,11 @@ export default function Navigation() {
                     className="pt-4"
                   >
                     <a
-                      href="#contacto"
-                      onClick={() => setIsOpen(false)}
+                      href={resolveHref('#contacto')}
+                      onClick={(event) => {
+                        handleInPageNavigation(event, '#contacto');
+                        setIsOpen(false);
+                      }}
                       className="btn-primary w-full text-center"
                     >
                       Contactar

@@ -7,16 +7,16 @@ import { CheckCircle, Award, Users, Clock } from 'lucide-react';
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -25,9 +25,9 @@ export default function About() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6
-      }
-    }
+        duration: 0.6,
+      },
+    },
   };
 
   const stats = [
@@ -35,20 +35,20 @@ export default function About() {
       icon: Award,
       value: '9+',
       label: 'Años de Experiencia',
-      description: 'En arquitectura cloud y DevOps'
+      description: 'En arquitectura cloud y DevOps',
     },
     {
       icon: Users,
       value: '50+',
       label: 'Proyectos Completados',
-      description: 'Startups y empresas establecidas'
+      description: 'Startups y empresas establecidas',
     },
     {
       icon: Clock,
       value: '24/7',
       label: 'Soporte Disponible',
-      description: 'Durante todo el proceso'
-    }
+      description: 'Durante todo el proceso',
+    },
   ];
 
   return (
@@ -57,7 +57,7 @@ export default function About() {
         <motion.div
           ref={ref}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={isInView ? 'visible' : 'hidden'}
           variants={containerVariants}
           className="grid lg:grid-cols-2 gap-12 items-center"
         >
@@ -75,30 +75,43 @@ export default function About() {
                 variants={itemVariants}
                 className="text-xl text-slate-300 leading-relaxed"
               >
-                Soy Rubén Casado, ingeniero de software especializado en DevOps y Cloud, con certificación AWS Architect Associate y más de 9 años de experiencia ayudando a startups y PYMEs a reducir costes, mejorar la seguridad y escalar sus sistemas.
+                Soy Rubén Casado, ingeniero de software especializado en DevOps
+                y Cloud, certificado en AWS y con más de 9 años de experiencia
+                ayudando a empresas con migraciones cloud, reducir costes,
+                mejorar la seguridad y escalar sus sistemas.
               </motion.p>
             </div>
 
             <motion.div variants={itemVariants} className="space-y-6">
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-white">Mi enfoque es simple:</h3>
+                <h3 className="text-xl font-semibold text-white">
+                  Mi enfoque es simple:
+                </h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <span className="text-2xl">🔎</span>
                     <div>
-                      <span className="text-slate-300 font-medium">Analizo tu infraestructura para identificar oportunidades de mejora.</span>
+                      <span className="text-slate-300 font-medium">
+                        Analizo tu infraestructura para identificar
+                        oportunidades de mejora.
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <span className="text-2xl">⚡</span>
                     <div>
-                      <span className="text-slate-300 font-medium">Propongo soluciones prácticas y personalizadas.</span>
+                      <span className="text-slate-300 font-medium">
+                        Propongo soluciones prácticas y personalizadas.
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <span className="text-2xl">🤝</span>
                     <div>
-                      <span className="text-slate-300 font-medium">Te acompaño de principio a fin, con soporte post-implementación.</span>
+                      <span className="text-slate-300 font-medium">
+                        Te acompaño de principio a fin, con soporte
+                        post-implementación.
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -121,10 +134,10 @@ export default function About() {
             {/* Profile Image Placeholder */}
             <div className="relative">
               <div className="w-80 h-80 mx-auto rounded-2xl border border-dark-600 overflow-hidden">
-                <img 
-                  src="/foto.jpg"
+                <img
+                  src="/foto.png"
                   alt="Profile photo"
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -146,9 +159,15 @@ export default function About() {
                     <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <IconComponent className="w-6 h-6 text-white" />
                     </div>
-                    <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                    <div className="text-sm font-medium text-slate-300 mb-1">{stat.label}</div>
-                    <div className="text-xs text-slate-400">{stat.description}</div>
+                    <div className="text-2xl font-bold text-white mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm font-medium text-slate-300 mb-1">
+                      {stat.label}
+                    </div>
+                    <div className="text-xs text-slate-400">
+                      {stat.description}
+                    </div>
                   </motion.div>
                 );
               })}
@@ -158,4 +177,4 @@ export default function About() {
       </div>
     </section>
   );
-} 
+}

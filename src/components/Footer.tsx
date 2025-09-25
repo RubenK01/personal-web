@@ -1,7 +1,6 @@
 'use client';
-
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -121,14 +120,8 @@ export default function Footer() {
               © {currentYear} Rubén Casado Domínguez. Todos los derechos reservados.
             </div>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+              <a href="/politica-de-privacidad" className="text-gray-400 hover:text-white transition-colors duration-200">
                 Política de Privacidad
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                Términos de Servicio
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
-                Aviso Legal
               </a>
             </div>
           </div>
